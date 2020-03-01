@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zfx.demo.mapper.TransInfoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.example.admins.bean.TransInfo">
+        <result column="MERCH_ID" property="merchId" />
+        <result column="TERM_ID" property="termId" />
+        <result column="TXN_AMT" property="txnAmt" />
+        <result column="PAN" property="pan" />
+        <result column="SYSTRACE" property="systrace" />
+        <result column="INVOICE" property="invoice" />
+        <result column="AUTHID" property="authid" />
+        <result column="BATCH" property="batch" />
+        <result column="REFNO" property="refno" />
+        <result column="DATE_TIME" property="dateTime" />
+        <result column="DATE_ASC_TIME" property="dateAscTime" />
+        <result column="TRANS_TYPE" property="transType" />
+        <result column="TRANS_NAME" property="transName" />
+        <result column="MODE_TYPE" property="modeType" />
+        <result column="MODE_NAME" property="modeName" />
+        <result column="MERCH_ORDER" property="merchOrder" />
+        <result column="BANK_ORDER" property="bankOrder" />
+        <result column="WZ_ORDER" property="wzOrder" />
+        <result column="EMP_ID" property="empId" />
+        <result column="NAME" property="name" />
+        <result column="PCJG" property="pcjg" />
+        <result column="PXBC" property="pxbc" />
+        <result column="PXSJ" property="pxsj" />
+        <result column="FLAG" property="flag" />
+        <result column="MEM_INFO" property="memInfo" />
+        <result column="IMP_DATE" property="impDate" />
+        <result column="MEMO1" property="memo1" />
+        <result column="MEMO2" property="memo2" />
+        <result column="MEMO3" property="memo3" />
+        <result column="MEMO4" property="memo4" />
+        <result column="MEMO5" property="memo5" />
+        <result column="MEMO6" property="memo6" />
+        <result column="MEMO7" property="memo7" />
+        <result column="MEMO8" property="memo8" />
+        <result column="MEMO9" property="memo9" />
+        <result column="MEMO10" property="memo10" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        MERCH_ID, TERM_ID, TXN_AMT, PAN, SYSTRACE, INVOICE, AUTHID, BATCH, REFNO, DATE_TIME, DATE_ASC_TIME, TRANS_TYPE, TRANS_NAME, MODE_TYPE, MODE_NAME, MERCH_ORDER, BANK_ORDER, WZ_ORDER, EMP_ID, NAME, PCJG, PXBC, PXSJ, FLAG, MEM_INFO, IMP_DATE, MEMO1, MEMO2, MEMO3, MEMO4, MEMO5, MEMO6, MEMO7, MEMO8, MEMO9, MEMO10
+    </sql>
+
+</mapper>

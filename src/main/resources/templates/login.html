@@ -1,0 +1,138 @@
+<!doctype html>
+<!--------------------------------------------------登陆界面
+                    登陆界面 ctrl+f9 刷新应用
+------------------------------------------------------->
+<html  class="x-admin-sm">
+<head>
+    <meta charset="UTF-8">
+	<title>后台登录-X-admin2.2</title>
+	<meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <!--此处对路径填写进行相关的说明解释：相关的css 和js 的路径 进行项目说明 css和js等路径文件 放在一个包下 包在resources中 下的包中
+    href进行访问的时候 ../是回退到上一层的意思 本项目EG:回到上一层就是resources下的目录 可直接css调用他的问js
+    在下次遇到此问题的时候  应在网页中和f12进行尝试中Network   再次遇到此类问题可参考：https://blog.csdn.net/qq_36481052/article/details/79075214 -->
+    <link rel="stylesheet" href="/static/css/font.css">
+    <link rel="stylesheet" href="/static/css/login.css">
+	  <link rel="stylesheet" href="/static/css/xadmin.css">
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="/static/lib/layui/layui.js" charset="utf-8"></script>
+    <!--[if lt IE 9]>
+      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+      <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body class="login-bg">
+    
+    <div class="login layui-anim layui-anim-up">
+        <div class="message">x-admin2.0-管理登录</div>
+        <div id="darkbannerwrap"></div>
+        
+        <form method="post" class="layui-form" id="login" >
+            <input id= "username" name="username" placeholder="用户名"  type="text" lay-verify="required" class="layui-input" >
+            <hr class="hr15">
+            <input id="password" name="password" lay-verify="required" placeholder="密码"  type="password" class="layui-input">
+            <hr class="hr15">
+
+            <hr class="hr20" >
+           <!-- 登陆应该写在外面不然不忍你  登陆会识别2次-->
+        </form>
+        <input value="登录" id="sub" lay-submit lay-filter="login" style="width:100%;" type="submit">
+    </div>
+
+    <script>
+
+        $('#sub').on("click",function () {
+            var  username=$("#username").val();
+            var  password=$("#password").val();
+
+            $.ajax({
+                type: "POST",
+                //后端访问的地址 datatype :text  是纯文本返回
+                url: "/user/login",
+               /* url: "/user/logins",*/
+               data: "username=" + username + "&password=" + password,
+                dataType: "text",
+                success:function (data) {
+
+                    var result = eval("(" + data + ")");
+                    if(result.code==0){
+
+                        
+                        console.log('data-----------'+data);
+                        alert(result.msg);
+                         window.location.href = "/page/index";
+                        //top.location.href='/user/in';
+                       // location.href='index.html'
+                    }else {
+                        alert(result.msg)
+                    }
+                }
+
+
+            })
+
+
+        })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //todo-------------------------------
+       /* $(function  () {
+            layui.use('form', function(){
+              var form = layui.form;
+              // layer.msg('玩命卖萌中', function(){
+              //   //关闭后的操作
+              //   });
+              //监听提交 点击login进行提交
+              form.on('submit(login)', function(data){
+                // alert(888)
+                layer.msg(JSON.stringify(data.field),function(){
+                    location.href='index.html'
+                });
+                return false;
+              });
+            });
+        })*/
+    </script>
+    <!-- 底部结束 -->
+    <script>
+    //百度统计可去掉
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+
+    //绑定键盘Enter登陆
+    $("#login").keydown(function (e) {
+        if (e.keyCode === 13) {
+            $("#sub").trigger("click");
+        }
+    });
+
+    </script>
+</body>
+</html>

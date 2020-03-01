@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.admins.Dao.UserInfoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.example.admins.bean.UserInfo">
+        <result column="SYS_NAME" property="sysName" />
+        <result column="SYS_NUMBER" property="sysNumber" />
+        <result column="SYS_TRAIN_NAME" property="sysTrainName" />
+        <result column="SYS_TRAN_TIME" property="sysTranTime" />
+        <result column="SYS_SITE" property="sysSite" />
+        <result column="SYS_MONEY" property="sysMoney" />
+        <result column="SYS_MONEY_STATE" property="sysMoneyState" />
+        <result column="SYS_REMARK" property="sysRemark" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        SYS_NAME,SYS_NUMBER, SYS_TRAIN_NAME, SYS_TRAN_TIME, SYS_SITE, SYS_MONEY, SYS_MONEY_STATE, SYS_REMARK
+    </sql>
+    
+    <!--<insert id="insertExcelData">
+        
+        insert into USER_INFO 
+        (
+        SYS_NAME,SYS_PASSWORD,SYS_NUMBER,SYS_TRAIN_NAME,SYS_TRAN_TIME,SYS_SITE,SYS_MONEY,SYS_MONEY_STATE,SYS_REMARK
+        )
+        VALUES (
+            #{userInfo.sysName},
+            #{userInfo.sysPassword},
+            #{userInfo.sysNumber},
+            #{userInfo.sysTrainName},
+            #{userInfo.sysTranTime},
+            #{userInfo.sysSite},
+            #{userInfo.sysMoney},
+            #{userInfo.sysMoneyState},
+            #{userInfo.sysRemark}
+        )
+    </insert>-->
+    
+    
+    
+    
+    <insert id="insertExcelData" parameterType="list">
+        insert into USER_INFO
+        (
+        SYS_NAME,SYS_PASSWORD,SYS_NUMBER,SYS_TRAIN_NAME,SYS_TRAN_TIME,SYS_SITE,SYS_MONEY,SYS_MONEY_STATE,SYS_REMARK
+        )
+        values
+        <foreach collection="map.keys" item="key" open="(" close=")" separator=",">
+            #{map[${key}]}
+        </foreach>
+    </insert>
+    
+
+    <!--分页-->
+    <select id="getALlByPage" resultMap="BaseResultMap">
+        SELECT *
+        FROM (SELECT A.*, ROWNUM RN
+        FROM (SELECT SYS_NAME,SYS_PASSWORD,SYS_NUMBER,SYS_TRAIN_NAME,SYS_TRAN_TIME,SYS_SITE,SYS_MONEY,SYS_MONEY_STATE,SYS_REMARK
+              FROM USER_INFO ORDER BY SYS_ID ASC) A
+        WHERE ROWNUM &lt;= #{pageIndex}*#{pageSize})
+        WHERE RN >(#{pageIndex}-1)*#{pageSize}
+    </select>
+    
+    
+</mapper>
