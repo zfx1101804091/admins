@@ -31,6 +31,14 @@ public class PageContontroller {
         return "welcome";
     }
 
+    
+    //登出功能
+    @RequestMapping("/loginOut")
+    public String loginOut(HttpSession session){
+        session.removeAttribute("user_login");
+        return "login";
+    }
+    
     //todo  ----
     @RequestMapping(value = "/member-list")
     public String test1() {
