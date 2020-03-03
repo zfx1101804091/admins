@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * @description: 拦截器
+ * @description: 定义拦截器
  * @author: zheng-fx
  * @time: 2020/2/25 0025 17:25
  */

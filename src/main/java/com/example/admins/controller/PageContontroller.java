@@ -1,10 +1,12 @@
 package com.example.admins.controller;
 
 import com.example.admins.bean.UserInfo;
+import com.example.admins.service.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
@@ -13,6 +15,8 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/page")
 public class PageContontroller {
 
+    @Autowired
+    UserInfoService userInfoService;
 
     //todo 登陆 ----http://localhost:8086/page/login
     @RequestMapping(value = "/login")
@@ -106,11 +110,15 @@ public class PageContontroller {
     }
 
     @RequestMapping(value = "/order-add")
-    public String  role() { return "order-add.html"; }
+    public String  order_add() { return "order-add"; }
 
 
-    @RequestMapping(value = "/order-add2")
-    public String  roles() { return "order-add2.html"; }
+    @RequestMapping(value = "/order-edit")
+    public String  order_edit(Model model,@RequestParam("sysId") String sysId) {
+        UserInfo userInfo = userInfoService.getUserById(sysId);
+        model.addAttribute("userInfo",userInfo);
+        return "order-edit";
+    }
 
 
     @RequestMapping(value = "/order-update")

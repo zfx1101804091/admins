@@ -73,6 +73,11 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
        
     }
 
+    @Override
+    public UserInfo getUserById(String sysId) {
+        return userInfoMapper.queryById(sysId);
+    }
+
 
     public static void inputStreamToFile(InputStream ins, File file) {
         try {

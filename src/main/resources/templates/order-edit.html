@@ -25,13 +25,13 @@
     <div class="layui-row">
         <form class="layui-form">
             <!--编辑保存时，把选中id传给后台-->
-            <input type="hidden" id="id" name="id" th:field='${userVar.varId}'/>
+           <!-- <input type="hidden" id="id" name="id" th:field='${userVar.varId}'/>-->
 
             <div class="layui-form-item">
                 <label for="varName" class="layui-form-label">
                     <span class="x-red">*</span>员工名字</label>
                 <div class="layui-input-inline">
-                    <input type="text" id="varName" name="varName" th:field='${userVar.varName}' required="" lay-verify="required"
+                    <input type="text" id="sysName" name="sysName" th:value="${userInfo.sysName}" required="" lay-verify="required"
                            autocomplete="off" class="layui-input"></div>
 
             </div>
@@ -39,25 +39,25 @@
                 <label for="varNumber" class="layui-form-label">
                     <span class="x-red">*</span>工号</label>
                 <div class="layui-input-inline">
-                    <input type="text" id="varNumber" name="varNumber" th:field='${userVar.varNumber}' required="" lay-verify="required"
+                    <input type="text" id="sysNumber" name="sysNumber" th:value="${userInfo.sysNumber}" required="" lay-verify="required"
                            autocomplete="off" class="layui-input"></div>
             </div>
             <div class="layui-form-item">
-                <label for="varTrainName" class="layui-form-label">
+                <label for="sysTrainName" class="layui-form-label">
                     <span class="x-red">*</span>培训班名称</label>
                 <div class="layui-input-inline">
-                    <input type="text" id="varTrainName" name="varTrainName" th:value='${userVar.varTrainName}' required="" lay-verify="required"
+                    <input type="text" id="sysTrainName" name="sysTrainName" th:value="${userInfo.sysTrainName}" required="" lay-verify="required"
                            autocomplete="off" class="layui-input"></div>
             </div>
-
+            <!--th:value='${#dates.format(userVar.varTranTime,"yyyy-MM-dd HH:mm:ss")}' -->
 
             <div class="layui-form">
                 <div class="layui-form-item">
                     <div class="layui-inline">
                         <label class="layui-form-label">培训时间</label>
                         <div class="layui-input-inline">
-                            <input type="text" class="layui-input" id="varTranTime" name="varTranTime"
-                                   th:value='${#dates.format(userVar.varTranTime,"yyyy-MM-dd HH:mm:ss")}'  required="" lay-verify="required" autocomplete="off"  placeholder="yyyy-MM-dd">
+                            <input type="text" class="layui-input" id="sysTranTime" name="sysTranTime"
+                                   required=""th:value="${#dates.format(userInfo.sysTranTime,'yyyy-MM-dd HH:mm:ss')}" lay-verify="required" autocomplete="off"  placeholder="yyyy-MM-dd">
                         </div>
                     </div>
                 </div>
@@ -68,14 +68,14 @@
                 <label for="varsite" class="layui-form-label">
                     <span class="x-red">*</span>派出机构</label>
                 <div class="layui-input-inline">
-                    <input type="text" id="varSite" name="varSite"   th:value='${userVar.varSite}' required="" lay-verify="required" autocomplete="off"
+                    <input type="text" id="sysSite" name="sysSite"  th:value="${userInfo.sysSite}" required="" lay-verify="required" autocomplete="off"
                            class="layui-input"></div>
             </div>
             <div class="layui-form-item">
-                <label for="varmoney" class="layui-form-label">
+                <label for="sysMoney" class="layui-form-label">
                     <span class="x-red">*</span>缴纳金额</label>
                 <div class="layui-input-inline">
-                    <input type="text" id="varMoney" name="varMoney" th:value='${userVar.varMoney}' required="" lay-verify="required"
+                    <input type="text" id="sysMoney" name="sysMoney" th:value="${userInfo.sysMoney}" required="" lay-verify="required"
                            autocomplete="off" class="layui-input"></div>
             </div>
 
@@ -91,9 +91,9 @@
             <div class="layui-form-item">
                 <label class="layui-form-label"><span class="x-red">*</span>缴纳状态</label>
                 <div class="layui-input-block">
-                    <input type="hidden" name="varMoneyState" th:value="${userVar.varMoneyState}" id="s0"  title="" >
-                    <input type="radio" name="varMoneyState" th:valuetype="${userVar.varMoneyState}" id="s1" value="0" title="未交费"  >
-                    <input type="radio" name="varMoneyState" th:valuetype="${userVar.varMoneyState}" id="s2" value="1" title="交费成功" >
+                    <input type="hidden" name="varMoneyState" id="s0"  title="" >
+                    <input type="radio" name="varMoneyState"  id="s1" value="0" title="未交费"  >
+                    <input type="radio" name="varMoneyState" id="s2" value="1" title="交费成功" >
                 </div>
             </div>
 
@@ -101,7 +101,7 @@
             <div class="layui-form-item layui-form-text">
                 <label for="varRemark" class="layui-form-label">备注</label>
                 <div class="layui-input-block">
-                    <textarea placeholder="请输入内容" id="varRemark" name="varRemark" th:text='${userVar.varRemark}' class="layui-textarea"></textarea>
+                    <textarea placeholder="请输入内容" id="varRemark" name="varRemark" class="layui-textarea"></textarea>
                 </div>
             </div>
             <div class="layui-form-item">

@@ -22,4 +22,6 @@ public interface UserInfoService extends IService<UserInfo> {
     UserInfo selectUserByCondition(String sysName, String sysPassword);
 
     Integer importExcel(MultipartFile excel);
+
+    UserInfo getUserById(String sysId);
 }

@@ -54,5 +54,6 @@ public class UserInfoController {
         Results<UserInfo> allByPage = userInfoService.getAllByPage(pageTable.getPage(), pageTable.getLimit());
         return allByPage;
     }
+    
 
 }

@@ -4,6 +4,7 @@ package com.example.admins.Dao;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.admins.bean.UserInfo;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 import java.util.Map;
@@ -22,4 +23,7 @@ public interface UserInfoMapper extends BaseMapper<UserInfo> {
 
 //    int insertExcelData(@Param("userInfo") UserInfo userInfo);
     int insertExcelData(@Param("map") Map<String,Object> map);
+
+    @Select("SELECT * from USER_INFO where SYS_ID = #{sysId}")
+    UserInfo queryById(String sysId);
 }

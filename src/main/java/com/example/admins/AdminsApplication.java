@@ -5,7 +5,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.web.servlet.MultipartAutoConfiguration;
+import org.springframework.context.annotation.ComponentScan;
 
+@ComponentScan(basePackages ="com.example.admins" )
 @MapperScan("com.example.admins.Dao")
 @SpringBootApplication
 //@EnableAutoConfiguration(exclude = {MultipartAutoConfiguration.class})

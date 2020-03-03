@@ -8,11 +8,7 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
- * 登陆拦截控制类
- * Created with IntelliJ IDEA.
- * Author: yangyongkang
- * Date: 2018/8/22
- * Time: 14:17
+ * 配置拦截器
  */
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
@@ -23,13 +19,14 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         InterceptorRegistration addInterceptor = registry.addInterceptor(securityInterceptor);
+        // 拦截配置
+        addInterceptor.addPathPatterns("/**");
         // 排除配置
         addInterceptor.excludePathPatterns("/error");
         addInterceptor.excludePathPatterns("/static/**");//排除静态资源
         addInterceptor.excludePathPatterns("/page/login");
         addInterceptor.excludePathPatterns("/user/login");
-        // 拦截配置
-        addInterceptor.addPathPatterns("/**");
+       
     }
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
